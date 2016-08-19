@@ -70,6 +70,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setText("resultado");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
 
+        txtresultado.setEditable(false);
         txtresultado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtresultadoActionPerformed(evt);
@@ -78,6 +79,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 60, -1));
 
         cmdcalcular.setText("calcular");
+        cmdcalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdcalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
         cmdborrar.setText("borrar");
@@ -111,6 +117,19 @@ public class Principal extends javax.swing.JFrame {
     private void txtnum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnum2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnum2ActionPerformed
+
+    private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
+    String num1,num2,res;int n1,n2,suma; 
+    num1=txtnum1.getText(); 
+    num2=txtnum2.getText(); 
+    n1=Integer.parseInt(num1); 
+    n2=Integer.parseInt(num2); 
+    suma=(n1+n2);
+    res=String.valueOf(suma); 
+    txtresultado.setText(res);
+    
+    
+    }//GEN-LAST:event_cmdcalcularActionPerformed
 
     /**
      * @param args the command line arguments
