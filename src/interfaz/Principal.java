@@ -59,6 +59,11 @@ public class Principal extends javax.swing.JFrame {
                 txtnum1ActionPerformed(evt);
             }
         });
+        txtnum1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnum1KeyTyped(evt);
+            }
+        });
         jPanel1.add(txtnum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 50, -1));
 
         jLabel3.setText("num2");
@@ -67,6 +72,11 @@ public class Principal extends javax.swing.JFrame {
         txtnum2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnum2ActionPerformed(evt);
+            }
+        });
+        txtnum2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnum2KeyTyped(evt);
             }
         });
         jPanel1.add(txtnum2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 70, -1));
@@ -139,7 +149,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnum2ActionPerformed
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
-    String res;double n1,n2,resultado = 0;int op; 
+    String res;double n1,n2 = 0,resultado = 0;int op = 0; 
     
     if(txtnum1.getText().trim().isEmpty()){ 
         JOptionPane.showMessageDialog(this,"Digite numero uno","Error",JOptionPane.ERROR_MESSAGE); 
@@ -147,7 +157,13 @@ public class Principal extends javax.swing.JFrame {
     }else if(txtnum2.getText().trim().isEmpty()){  
       JOptionPane.showMessageDialog(this,"Digite numero dos","Error",JOptionPane.ERROR_MESSAGE); 
       txtnum2.requestFocusInWindow();
-    }else{
+    }else{ 
+     if(op ==3&& n2 ==0){ 
+      JOptionPane.showMessageDialog(this,"No digite el cero en el segundo numero","Error",JOptionPane.ERROR_MESSAGE); 
+      txtnum2.requestFocusInWindow(); 
+      txtnum2.selectAll();
+     }else{
+    }
     n1=Double.parseDouble(txtnum1.getText()); 
     n2=Double.parseDouble(txtnum2.getText()); 
     op=cmboperacion.getSelectedIndex(); 
@@ -172,7 +188,7 @@ public class Principal extends javax.swing.JFrame {
     
     
     }//GEN-LAST:event_cmdcalcularActionPerformed
-
+    }
     private void cmbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBorrarActionPerformed
      txtnum1.setText(""); 
      txtnum2.setText(""); 
@@ -188,10 +204,35 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmboperacionActionPerformed
 
+    private void txtnum1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnum1KeyTyped
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+              
+               
+          } 
+             
+    }//GEN-LAST:event_txtnum1KeyTyped
+
+    private void txtnum2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnum2KeyTyped
+         char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+    }//GEN-LAST:event_txtnum2KeyTyped
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) { 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
