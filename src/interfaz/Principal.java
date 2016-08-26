@@ -59,11 +59,6 @@ public class Principal extends javax.swing.JFrame {
                 txtnum1ActionPerformed(evt);
             }
         });
-        txtnum1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtnum1KeyTyped(evt);
-            }
-        });
         jPanel1.add(txtnum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 50, -1));
 
         jLabel3.setText("num2");
@@ -125,15 +120,16 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(729, 611));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtnum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnum1ActionPerformed
@@ -149,7 +145,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnum2ActionPerformed
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
-    String res;double n1,n2 = 0,resultado = 0;int op = 0; 
+    String res;double n1,n2 = 0,resultado = 0;int op =0,sw=1;
     
     if(txtnum1.getText().trim().isEmpty()){ 
         JOptionPane.showMessageDialog(this,"Digite numero uno","Error",JOptionPane.ERROR_MESSAGE); 
@@ -157,12 +153,27 @@ public class Principal extends javax.swing.JFrame {
     }else if(txtnum2.getText().trim().isEmpty()){  
       JOptionPane.showMessageDialog(this,"Digite numero dos","Error",JOptionPane.ERROR_MESSAGE); 
       txtnum2.requestFocusInWindow();
+      sw=0;
     }else{ 
-     if(op ==3&& n2 ==0){ 
-      JOptionPane.showMessageDialog(this,"No digite el cero en el segundo numero","Error",JOptionPane.ERROR_MESSAGE); 
-      txtnum2.requestFocusInWindow(); 
-      txtnum2.selectAll();
-     }else{
+      try{ 
+         n1=Double.parseDouble(txtnum2.getText()); 
+      }catch(NumberFormatException e){ 
+         JOptionPane.showMessageDialog(this,"El primer numero debe ser valido","Error",JOptionPane.ERROR_MESSAGE); 
+         txtnum1.requestFocusInWindow();
+         txtnum2.selectAll(); 
+         sw=0; 
+      } 
+      try{ 
+        Double.parseDouble(txtnum2.getText()); 
+      }catch(NumberFormatException e){ 
+          JOptionPane.showMessageDialog(this,"El segundo numero debe ser valido","Error",JOptionPane.ERROR_MESSAGE); 
+          txtnum2.requestFocusInWindow(); 
+          txtnum2.selectAll(); 
+          sw=0;
+                
+     
+     }if(sw==1){ 
+      
     }
     n1=Double.parseDouble(txtnum1.getText()); 
     n2=Double.parseDouble(txtnum2.getText()); 
@@ -187,6 +198,15 @@ public class Principal extends javax.swing.JFrame {
     txtresultado.setText(res);
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }//GEN-LAST:event_cmdcalcularActionPerformed
     }
     private void cmbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBorrarActionPerformed
@@ -203,21 +223,6 @@ public class Principal extends javax.swing.JFrame {
     private void cmboperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboperacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmboperacionActionPerformed
-
-    private void txtnum1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnum1KeyTyped
-        char c=evt.getKeyChar(); 
-             
-         
-          if(!Character.isDigit(c)) { 
-              getToolkit().beep(); 
-               
-              evt.consume(); 
-               
-              
-               
-          } 
-             
-    }//GEN-LAST:event_txtnum1KeyTyped
 
     private void txtnum2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnum2KeyTyped
          char c=evt.getKeyChar(); 
